@@ -1,40 +1,81 @@
 import { useState, useEffect } from 'react'
-import { axios } from 'axios'
+import axios from 'axios'
 
 function App() {
   const [pokemon, setPokemon] = useState('')
-  const URL = 'https://pokeapi-proxy.freecodecamp.rocks/api/pokemon'
+  const [search, setSearch] = useState('pikachu')
+  const URL = `https://pokeapi-proxy.freecodecamp.rocks/api/pokemon/${search}`
 
-  useEffect(() => {
-    async function fetchData(){
-      const data = await fetch(URL);
+  async function fetchData(){
+    try {
+      const response = await axios.get(URL)
+      const result = await response.data
+      console.log(result)
+      setPokemon(result)
     }
-    
-  }, [])
+    catch (err) {
+      console.log(err.message)
+    }
+  }
+  
+  function handleChange(event) {
+    let pokemonName = event.target.value.toLowerCase();
+    setSearch(pokemonName)
+  }
+
+  function handleSubmit(event) {
+    console.log(search)
+    fetchData()
+  }
+ 
+  useEffect (()=>{
+    fetchData() 
+  },[])
+
+  const stats = pokemon?.stats?.map((stat) => {
+    return (
+      <tr key={stat.stat.name}>
+        <th>{stat.stat.name}</th>
+        <th>{stat.base_stat}</th>
+      </tr>
+    );
+  })
 
   return (
-    <>
+    <div className="content">
       <h1>Pokemon Wiki</h1>
       <div className='container'>
         <h3>Search for pokemon. Enter name or ID</h3>
-        <div>
-          <input type="text" />
-          <button type="submit">Search</button>
+        <div className='search-box'>
+          <input
+            className='search-input'
+            type="text" 
+            placeholder='Search Pokemon!'
+            onChange = {handleChange}
+            />
+          <button 
+          type="submit"
+          onClick={handleSubmit}
+          >Search</button>
         </div>
         <div className="top-container">
           <div className="name-and-id">
-            <span>NAME ID</span>
+            <span>{pokemon.name} #{pokemon.id}</span>
           </div>
           <div className="size">
-            <span>SIZE</span>
+            <span>Weight: {pokemon.weight} </span>
+            <span>Height: {pokemon.height} </span>
           </div>
           <div className="sprite-container">
-            <img src="" alt="" />
+            <img src={pokemon?.sprites?.front_shiny} alt="" />
           </div>
           <div className="types">
-            <span>Type 1</span>
-            <span>Type 2</span>
-          </div>
+            {pokemon?.types?.map((typeInfo) => (
+              <span key={typeInfo.type.name}>
+                {typeInfo.type.name} 
+              </span>
+              ))}
+          </div> 
         </div>
         <div className="bottom-container">
           <table>
@@ -43,36 +84,18 @@ function App() {
                 <th>Base</th>
                 <th>Stats</th>
               </tr>
-              <tr>
-                <th>HP</th>
-                <th>S6</th>
-              </tr>
-              <tr>
-                <th>Attack</th>
-                <th>4</th>
-              </tr>
-              <tr>
-                <th>Defence</th>
-                <th>53</th>
-              </tr>
-              <tr>
-                <th>Sp. Attack</th>
-                <th>2</th>
-              </tr>
-              <tr>
-                <th>Sp. Defence</th>
-                <th>1</th>
-              </tr>
-              <tr>
-                <th>Speed</th>
-                <th>100</th>
-              </tr>
+              {stats}
             </tbody>
           </table>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
 export default App
+
+
+//TO DO 
+//Divide components
+//Styling
