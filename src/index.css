@@ -4,24 +4,25 @@
   margin: 0;
 }
 
+body {
+  background-color: #0a0a23;
+}
 #root {
   max-width: 450px;
   margin: auto;
+  line-height: 1.5;
+  height: 100vh;
 }
 
 h1 {
   text-align: center;
-}
-
-button {
-  background-color: purple;
-  border-radius: 10px;
-  color: #f5f6f7;
+  color:#f5f6f7;
+  margin-top: 25px;
 }
 
 .container {
   margin-top: 25px;
-  padding: 25px;
+  padding: 20px 35px;
   background-color: #f5f6f7;
   border: 1px solid #f5f6f7;
   border-radius: 15px;
@@ -30,7 +31,83 @@ button {
 
 .search-box {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
-  margin-top: 10px;
+  gap: 15px;
+  margin: 14px 0px;
+}
+
+.search-input {
+  height: 33px;
+  padding: 1px 2px 1px 10px;
+  width: 200px;
+  outline: none;
+}
+
+.search-input:focus {
+  border: 3px solid #7f21ab;
+}
+
+button {
+  padding: 8px 5px;
+  width: 80px;
+  border-radius: 20px;
+  text-align: center;
+  background-color: #7f21ab;
+  color: #f5f6f7;
+  border:none;
+}
+
+button:hover {
+  background-color: #be5cec;
+  cursor: pointer;
+}
+
+.top-container {
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.top-container, .bottom-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.name-and-id {
+  height: 28px;
+  font-size: 1.1em;
+  text-transform: capitalize;
+  margin-bottom: 5px;
+}
+
+.size {
+  height: 22px;
+  font-size: 0.85rem;
+}
+
+.types {
+  min-height: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 5px;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  color: #f5f6f7;
+  background-color: #7f21ab;
+}
+
+tr {
+  border-bottom: 5px solid #f5f6f7;
+}
+
+td, th {
+  text-align: center;
+  padding: 8px;
+  border-right: 5px solid #f5f6f7;
 }

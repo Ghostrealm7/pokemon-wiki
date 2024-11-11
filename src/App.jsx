@@ -43,10 +43,10 @@ function App() {
 
   return (
     <div className="content">
-      <h1>Pokemon Wiki</h1>
+      <h1>Pokémon Search App</h1>
       <div className='container'>
-        <h3>Search for pokemon. Enter name or ID</h3>
         <div className='search-box'>
+          <p>Search for pokemon by name or ID</p>
           <input
             className='search-input'
             type="text" 
@@ -96,6 +96,5 @@ function App() {
 export default App
 
 
-//TO DO 
-//Divide components
-//Styling
+// Conditional rendering on types
+// red - fire, yellow - electric etc.
