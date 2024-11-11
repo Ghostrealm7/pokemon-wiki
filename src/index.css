@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: #0a0a23;
+  background-color: #1b1b32;
 }
 #root {
   max-width: 450px;
@@ -66,6 +66,7 @@ button:hover {
 .top-container {
   margin-bottom: 10px;
   padding: 10px;
+  background-color: #f0f1f7;
 }
 
 .top-container, .bottom-container {
@@ -76,8 +77,8 @@ button:hover {
 
 .name-and-id {
   height: 28px;
-  font-size: 1.1em;
-  text-transform: capitalize;
+  font-size: 1.2rem;
+  text-transform: uppercase;
   margin-bottom: 5px;
 }
 
@@ -94,16 +95,27 @@ button:hover {
   gap: 5px;
 }
 
+.type {
+  width: 66px;
+  padding-top: 6.5px;
+  font-size: 0.7rem;
+  text-align: center;
+  border-radius: 5px;
+  text-transform: uppercase;
+  color:#1b1b32
+}
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
   width: 100%;
   color: #f5f6f7;
-  background-color: #7f21ab;
+  background-color: #1b1b32;
 }
 
 tr {
   border-bottom: 5px solid #f5f6f7;
+  text-transform: capitalize;
 }
 
 td, th {

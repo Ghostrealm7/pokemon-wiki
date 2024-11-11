@@ -10,7 +10,6 @@ function App() {
     try {
       const response = await axios.get(URL)
       const result = await response.data
-      console.log(result)
       setPokemon(result)
     }
     catch (err) {
@@ -24,8 +23,32 @@ function App() {
   }
 
   function handleSubmit(event) {
-    console.log(search)
     fetchData()
+  }
+
+  function getTypeColor(type) {
+    switch (type) {
+      case 'fire':
+        return '#ff6f52';
+      case 'grass':
+        return '#78cc55';
+      case 'water':
+        return '#42a1ff';
+      case 'electric':
+        return '#fecc33';
+      case 'fightning':
+        return '#d3887e';
+      case 'psychic':
+        return '#ff66a3';
+      case 'poison':
+        return '#c68bb7';
+      case 'ground':
+        return '#dfba52';
+      case 'rock':
+        return '#baaa66';
+      default:
+        return '#8899ff'; // default color
+    }
   }
  
   useEffect (()=>{
@@ -67,15 +90,19 @@ function App() {
             <span>Height: {pokemon.height} </span>
           </div>
           <div className="sprite-container">
-            <img src={pokemon?.sprites?.front_shiny} alt="" />
+            <img src={pokemon?.sprites?.front_default} alt="" />
           </div>
           <div className="types">
             {pokemon?.types?.map((typeInfo) => (
-              <span key={typeInfo.type.name}>
-                {typeInfo.type.name} 
+              <span
+                className='type'
+                key={typeInfo.type.name}
+                style={{ backgroundColor: getTypeColor(typeInfo.type.name) }}
+              >
+                {typeInfo.type.name}
               </span>
-              ))}
-          </div> 
+            ))}
+          </div>
         </div>
         <div className="bottom-container">
           <table>
